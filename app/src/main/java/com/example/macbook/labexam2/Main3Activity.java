@@ -30,6 +30,7 @@ public class Main3Activity extends AppCompatActivity {
         Intent mIntent = getIntent();
         selMember_ID = mIntent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
 
+        //connect to database
         dbHandler = new MyDBHandler(Main3Activity.this, null, null, 1);
 
         EditText mFirst_Name = (EditText) findViewById(R.id.txtFirst_Name_Update);
@@ -37,6 +38,7 @@ public class Main3Activity extends AppCompatActivity {
         EditText mEMail = (EditText) findViewById(R.id.txtEMail_Update);
         EditText mPhone_No = (EditText) findViewById(R.id.txtPhone_No_Update);
 
+        //find member to update
         Cursor searchResult = dbHandler.getMemberbyID(selMember_ID);
         searchResult.moveToFirst();
         mFirst_Name.setText(searchResult.getString(searchResult.getColumnIndex(dbHandler.COLUMN_FIRST_NAME)));
@@ -55,6 +57,8 @@ public class Main3Activity extends AppCompatActivity {
                 Toast.makeText(Main3Activity.this,
                         "Member is updated.",
                         Toast.LENGTH_SHORT).show();
+
+                //update complete, back to MainActivity
                 Intent mIntent = new Intent(Main3Activity.this, MainActivity.class);
                 startActivity(mIntent);
                 Main3Activity.this.finish();

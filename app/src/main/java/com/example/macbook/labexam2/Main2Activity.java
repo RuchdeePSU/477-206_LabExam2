@@ -20,11 +20,14 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        //set toolbar
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(mToolbar);
 
+        //connect to database
         dbHandler = new MyDBHandler(Main2Activity.this, null, null, 1);
 
+        //add button
         Button btnAdd = (Button) findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +42,8 @@ public class Main2Activity extends AppCompatActivity {
                 Toast.makeText(Main2Activity.this,
                         "New member is added.",
                         Toast.LENGTH_SHORT).show();
+
+                //insert complete, back to MainActivity
                 Intent mIntent = new Intent(Main2Activity.this, MainActivity.class);
                 startActivity(mIntent);
                 Main2Activity.this.finish();

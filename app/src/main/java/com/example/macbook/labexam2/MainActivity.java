@@ -28,9 +28,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //set toolbar
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
+        //connect to database
         dbHandler = new MyDBHandler(MainActivity.this, null, null, 1);
 
 
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         memberAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listAllMembers);
         mListView.setAdapter(memberAdapter);
 
+        //set context menu to ListView
         registerForContextMenu(mListView);
     }
 
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.mnuAdd) {
+            //call Main2Activity
             Intent add_member_activity = new Intent(this, Main2Activity.class);
             startActivity(add_member_activity);
         }
